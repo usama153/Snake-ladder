@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Snake & Ladder – Login</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section id="login" class="screen">
+  <h1>🐍 Snake & Ladder</h1>
+  <h2>Login</h2>
+  
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+  
+  <button onclick="login()">Login</button>
+  <p id="error" style="color:red;"></p>
+</section>
+
+<script>
+  // Simple frontend "database"
+  const usersDB = {
+    "Alice":"123", 
+    "Bob":"456",
+    "Charlie":"789",
+    "David":"000"
+  };
+
+  function login(){
+    const uname = document.getElementById("username").value;
+    const pwd = document.getElementById("password").value;
+    const error = document.getElementById("error");
+
+    if(usersDB[uname] && usersDB[uname] === pwd){
+      // Save logged-in username (optional)
+      localStorage.setItem("loggedInUser", uname);
+      window.location.href = "index.html"; // go to lobby/settings
+    } else {
+      error.textContent = "Invalid username or password!";
+    }
+  }
+</script>
+
+</body>
+</html>
