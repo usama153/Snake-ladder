@@ -1,0 +1,107 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#1f4037,#99f2c8);
+  margin: 0;
+}
+
+.screen {
+  width: 500px;
+  background: white;
+  padding: 20px;
+  margin: 40px auto;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.hidden { display: none; }
+
+input, button {
+  width: 90%;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+button {
+  background: #1f4037;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(10,1fr);
+  gap: 3px;
+  margin-top: 15px;
+  border: 2px solid rgba(0,0,0,0.04);
+}
+
+.cell {
+  background: #eee;
+  padding: 6px;
+  font-size: 12px;
+  height: 40px;
+  position: relative;
+  border: 1px solid rgba(46,139,87,0.12);
+  box-sizing: border-box;
+}
+.cell.path-cell { background: #fff7e6; border-color: #ffb74d; position: relative; }
+.cell .path-step { position: absolute; right: 4px; bottom: 4px; background: #ff7043; color: white; width:18px; height:18px; text-align:center; border-radius:50%; font-size:10px; line-height:18px; font-weight:bold; }
+
+.token {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  z-index: 20;
+}
+.token1 { background: red; }
+.token2 { background: blue; }
+.token3 { background: green; }
+.token4 { background: orange; }
+
+/* Snake & Ladder overlay styles */
+#board { position: relative; }
+#s-l-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: auto; /* enable hover */
+}
+.s-img {
+  position: absolute;
+  pointer-events: none;
+  transform-origin: left center;
+}
+.s-icon { position: absolute; pointer-events: none; transform-origin: center center; z-index: 10; }
+.ladder-line { stroke: #2e8b57; stroke-width: 6; stroke-linecap: round; }
+.ladder-rung { stroke: #2e8b57; stroke-width: 3; }
+.snake-path { stroke: #b22222; stroke-width: 6; fill: none; stroke-linecap: round; stroke-opacity: 1; }
+.simple-line { stroke-dasharray: 6 6; stroke-opacity: 0.7; stroke-width: 4; }
+.icons-only { opacity: 0.95; }
+
+/* Ensure overlay is below tokens */
+#s-l-svg { z-index: 10; opacity: 0.95; pointer-events: auto; }
+
+/* Hover state */
+.overlay-hover { stroke-width: 6 !important; filter: drop-shadow(0 0 6px rgba(0,0,0,0.25)); }
+.ladder-line.overlay-hover, .ladder-rung.overlay-hover { stroke: #2e7d32; stroke-width: 8 !important; }
+.snake-path.overlay-hover { stroke: #ff3b3b; stroke-width: 10 !important; filter: drop-shadow(0 0 10px rgba(178,34,34,0.4)); }
+.cell.highlight-start { background: #fff8e1; border-color: #ffa726; }
+.cell.highlight-end { background: #fff1f0; border-color: #ff6b6b; }
+.overlay-tooltip {
+  position: fixed;
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+/* History */
+.history-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.history-table th, .history-table td { padding: 6px; text-align: left; font-size: 13px; }
+.history-table tr:nth-child(odd){ background: rgba(0,0,0,0.02); }
