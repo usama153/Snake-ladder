@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Snake & Ladder Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <!-- BOARD -->
+
+  <div id="board"></div>
+
+  <!-- SIDE PANEL -->
+  <div class="panel">
+    <h3 id="turnInfo"></h3>
+    <button onclick="rollDice()">🎲 Roll Dice</button>
+    <p id="diceResult"></p>
+
+    <h3>Score Board</h3>
+    <table>
+      <thead>
+        <tr><th>Player</th><th>Pos</th><th>Moves</th></tr>
+      </thead>
+      <tbody id="score"></tbody>
+    </table>
+
+    <button onclick="fetchHistory()">🕘 View History</button>
+    <div id="history"></div>
+    <div id="overlayTooltip" class="overlay-tooltip" style="display:none"></div>
+
+    <button onclick="shortestPath()">📏 Shortest Path</button>
+    <button id="clearPathBtn" onclick="clearPath()" style="display:none">✖ Clear Path</button>
+    <br>
+    <div id="pathInfo" style="margin-top:8px;font-size:13px;color:#333"></div>
+    <button id="toggleOverlayBtn" onclick="toggleOverlay()">👁️ Hide Snakes/Ladders</button>
+    <label style="display:block;margin-top:8px">Overlay Mode:
+      <select id="overlayModeSelect" onchange="setOverlayMode(this.value)">
+        <option value="icons">Icons Only</option>
+        <option value="simple">Simple Lines</option>
+        <option value="full">Full Paths</option>
+      </select>
+    </label>
+    <br><br>
+    <a href="index.html">⬅ Back to Lobby</a>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
