@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Snake & Ladder – Lobby</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section id="lobby" class="screen">
+  <h1>🐍 Snake & Ladder</h1>
+  <h2>Game Settings</h2>
+
+  <label for="playerCount">Select number of players:</label>
+  <select id="playerCount">
+    <option value="1">1 Player</option>
+    <option value="2">2 Players</option>
+    <option value="3">3 Players</option>
+    <option value="4">4 Players</option>
+  </select>
+
+  <h3>Player Win History</h3>
+  <ul id="historyList"></ul>
+
+  <button onclick="startGame()">Play Game</button>
+</section>
+
+<script>
+  // Load win history from localStorage
+  let winHistory = JSON.parse(localStorage.getItem("winHistory")||"[]");
+
+  function loadHistory(){
+    const ul = document.getElementById("historyList");
+    ul.innerHTML = "";
+    if(winHistory.length===0){
+      ul.innerHTML = "<li>No games played yet</li>";
+    } else {
+      winHistory.forEach((name,i)=>{
+        const li = document.createElement("li");
+        li.textContent = `${i+1}. ${name}`;
+        ul.appendChild(li);
+      });
+    }
+  }
+
+  function startGame(){
+    const playerCount = document.getElementById("playerCount").value;
+    localStorage.setItem("playerCount", playerCount);
+    window.location.href = "game.html";
+  }
+
+  loadHistory();
+</script>
+
+</body>
+</html>
